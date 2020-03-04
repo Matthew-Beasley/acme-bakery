@@ -3,7 +3,16 @@ const {
   readChefs
 } = require('./chefs');
 
+const {
+  createRecipes,
+  readRecipes
+} = require('./recipes');
+
+
 module.exports = {
   createChefs,
-  readChefs
+  readChefs,
+
+  createRecipes,
+  readRecipes
 };

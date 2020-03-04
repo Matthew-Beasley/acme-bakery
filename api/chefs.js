@@ -7,9 +7,9 @@ const {
 const chefsRouter = express.Router();
 
 chefsRouter.post('/', async (req, res, next) => {
-  const { chef_name } = req.body;
+  const { name } = req.body;
   try {
-    const data = await createChefs(chef_name);
+    const data = await createChefs(name);
     res.status(200).send(data);
   } catch (error) {
     next(error);

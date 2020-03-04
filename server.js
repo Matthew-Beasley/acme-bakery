@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { sync } = require('./datalayer/setup');
 const { apiRouter } = require('./api/index');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,5 +18,5 @@ app.get('/', (req, res, next) => {
   }
 })
 
-
+//sync();
 app.listen(PORT, () => console.log('Listening on PORT ', PORT));

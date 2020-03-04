@@ -1,11 +1,11 @@
 const { client } = require('./client');
 
-const createChefs = async (chefName) => {
+const createChefs = async (name) => {
   const sql = `
-  INSERT INTO chefs (chef_name)
+  INSERT INTO chefs (name)
   VALUES ($1)
   RETURNING *`;
-  return (await client.query(sql, [chefName])).rows[0];
+  return (await client.query(sql, [name])).rows[0];
 }
 
 

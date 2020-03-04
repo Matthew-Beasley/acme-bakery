@@ -1,20 +1,31 @@
 const { client } = require('./client');
+const {
+  createChefs,
+  readChefs
+} = require('./chefs');
 
-const setup = async () => {
+const sync = async () => {
   const sql = `
   CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
   DROP TABLE IF EXISTS recipes;
   DROP TABLE IF EXISTS chefs;
 
-  CREATE TABLE recipes(
-    recipe_id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
-    chef_name VARCHAR(100)
-    recipe_name VARCHAR(255)
-  )
-
   CREATE TABLE chefs(
-    chef_id UUID PRIMARY KEY uuid_generate_v1(),
-    chef_name VARCHAR(100)
-  )`;
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
+    name VARCHAR(100)
+  );
+
+  CREATE TABLE recipes(
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
+    "chefId" UUID,
+    name VARCHAR(255)
+  );`;
+
   await client.query(sql);
+
+  await createChefs('chief');
+  await createChefs('darrington');
+  await createChefs('jasper');
 }
+
+module.exports = { sync };
