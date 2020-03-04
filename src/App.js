@@ -2,25 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-const Recipes = () => {
+const Chefs = ({ chefs }) => {
+  console.log(chefs);
   return (
-    <h3>Recipes placeholder</h3>
-  )
-}
-
-
-const Chefs = (chefs, setChefs) => {
-  const [chef, setChef] = useState('');
-
-  return (
-    <div>
-      <h2>Chefs</h2>
+    <div id="chef-container">
+      <h2>chefs</h2>
       <ul>
         {chefs.map(cook => {
-          return (
-            <li key={cook.id}>{cook.name}</li>
-          )
-        })}
+        return (
+          <li key={cook.id}>{cook.name}</li>
+        )
+      })}
       </ul>
     </div>
   )
@@ -32,14 +24,13 @@ const App = () => {
 
   useEffect(() => {
     axios.get('/api/chefs')
-      .then(response => setChefs(response))
+      .then(response => setChefs(response.data));
   }, []);
 
   return (
     <div>
       <h1>Acme Bakery</h1>
-      <Chefs chefs={chefs} setChefs={setChefs} />
-      <Recipes />
+      <Chefs chefs={chefs} />
     </div>
   )
 }
