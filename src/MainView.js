@@ -2,11 +2,11 @@ import React from 'react';
 import Recipes from './Recipes';
 import Chefs from './Chefs';
 
-const MainView = ({ chefs, recipes }) => {
+const MainView = ({ chefs, setChefs, recipes, setRecipes }) => {
   return (
     <div id="mainview-wrapper">
-      <Chefs chefs={chefs} recipes={recipes} />
-      <Recipes chefs={chefs} recipes={recipes} />
+      <Chefs chefs={chefs} setChefs={setChefs} recipes={recipes} />
+      <Recipes chefs={chefs} setRecipes={setRecipes} recipes={recipes} />
     </div>
   )
 }

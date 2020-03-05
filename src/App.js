@@ -23,7 +23,7 @@ const App = () => {
     <div id="app-container">
       <h1>Acme Bakery</h1>
       <div id="routes">
-        <MainView chefs={chefs} recipes={recipes} />
+        <MainView chefs={chefs} setChefs={setChefs} recipes={recipes} setRecipes={setRecipes} />
       </div>
     </div>
   )
