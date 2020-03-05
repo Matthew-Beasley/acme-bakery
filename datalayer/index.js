@@ -1,18 +1,26 @@
 const {
   createChefs,
-  readChefs
+  readChefs,
+  updateChefs,
+  deleteChefs
 } = require('./chefs');
 
 const {
   createRecipes,
-  readRecipes
+  readRecipes,
+  updateRecipes,
+  deleteRecipes
 } = require('./recipes');
 
 
 module.exports = {
   createChefs,
   readChefs,
+  updateChefs,
+  deleteChefs,
 
   createRecipes,
-  readRecipes
+  readRecipes,
+  updateRecipes,
+  deleteRecipes
 };
