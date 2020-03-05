@@ -33,8 +33,7 @@ const Chefs = ({ chefs, setChefs, recipes }) => {
         })}
       </ul>
       <form onSubmit={ev => ev.preventDefault()}>
-        <label >Name</label>
-        <input type="text" value={chef} onChange={(ev) => setChef(ev.target.value)} />
+        <input type="text" placeholder="Chef Name" value={chef} onChange={(ev) => setChef(ev.target.value)} />
         <button type="submit" onClick={() => createChef(chef)}>Create</button>
       </form>
     </div>
