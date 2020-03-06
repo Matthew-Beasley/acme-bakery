@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Recipes = ({ chefs, setRecipes, recipes }) => {
@@ -22,38 +23,41 @@ const Recipes = ({ chefs, setRecipes, recipes }) => {
 
   return (
     <div id="recipe-container">
-      <h2>Recipes</h2>
-      <ul>
+      <div className="section-title"><h2>Recipes ({recipes.length})</h2></div>
+      <ul className="outer-list">
         {recipes.map(dish => {
           return (
             <li key={dish.id}>
-              {dish.name}
-              <ul>
+              <Link to={`/recipesUpdate/${dish.id}`}>{dish.name}</Link>
+              <button className="del-button" type="button" onClick={() => deleteRecipe(dish)}>Delete</button>
+              <ul className="inner-list">
                 {chefs.filter(cook => cook.id === dish.chefId).map(cook => {  
                   return (
                     <li key={cook.id}>
-                      {cook.name}
+                     by {cook.name}
                     </li>
                   )
                 })}
               </ul>
-              <button type="button" onClick={() => deleteRecipe(dish)}>Delete</button>
             </li>
           )
         })}
       </ul>
 
-      <form onSubmit={ev => ev.preventDefault()}>
-        <input type="text" placeholder="Enter recipe name" value={recipe} onChange={ev => setRecipe(ev.target.value)} />
-        <select placeholder="Choose chef" onChange={ev => setChef(ev.target.value)}>
-          {chefs.map(cook => {
-            return (
-              <option key={cook.id} value={cook.id}>{cook.name}</option>
-            )
-          })}
-        </select>
-        <button type="button" onClick={() => createRecipe()}>Create</button>
-      </form>
+      <div className="form-container">
+        <form onSubmit={ev => ev.preventDefault()}>
+          <input type="text" placeholder="Enter recipe name" value={recipe} onChange={ev => setRecipe(ev.target.value)} />
+          <select placeholder="Choose chef" onChange={ev => setChef(ev.target.value)}>
+            <option key="default" value="">choose chef</option>
+            {chefs.map(cook => {
+              return (
+                <option key={cook.id} value={cook.id}>{cook.name}</option>
+              )
+            })}
+          </select>
+          <button type="button" onClick={() => createRecipe()}>Create</button>
+        </form>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,108 @@
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+
+#app-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+#app-container > h1 {
+  color: teal;
+  margin-left: 3rem;
+}
+
+/*===== Main View ======*/
+
+#mainview-constainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.section-title {
+  width: 98.5%;
+  padding: .25rem;
+  background-color: teal;
+  color: white;
+}
+
+.section-title > h2 {
+  margin-left: 3rem;
+}
+
+#recipe-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 45%;
+  min-height: 25rem;
+  border: 1px solid black;
+}
+
+#chef-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:45%;
+  min-height: 25rem;
+  border: 1px solid black;
+}
+
+a {
+  color: teal;
+  font-size: large;
+}
+
+.outer-list {
+  justify-self: start;
+}
+
+.inner-list {
+  list-style-type: none;
+  padding:0;
+  margin:0;
+}
+
+.del-button {
+  float: right;
+  height: 1.1rem;
+  font-size: .8rem;
+  background-color: lightgray;
+}
+
+.form-container {
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: auto;
+  background-color: lightgrey;
+}
+
+form > input {
+  height: 1.5rem;
+  font-size: 1rem;
+  width: 95%;
+  margin: 1rem;
+}
+
+form > button {
+  height: 2rem;
+  width: 95%;
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+form > select {
+  height: 2rem;
+  width: 95%;
+  font-size: 1rem;
+  margin: 1rem;
+}
+

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Chefs = ({ chefs, setChefs, recipes, setRecipes }) => {
@@ -18,7 +19,6 @@ const Chefs = ({ chefs, setChefs, recipes, setRecipes }) => {
 
 
   const deleteChef = async (cook) => {
-    console.log(cook)
     const response = await axios.delete(`/api/chefs/${cook.id}`);
     setChefs(chefs.filter(item => item.id !== response.data.id));
   }
@@ -26,31 +26,33 @@ const Chefs = ({ chefs, setChefs, recipes, setRecipes }) => {
 
   return (
     <div id="chef-container">
-      <h2>chefs</h2>
-      <ul>
+      <div className="section-title"><h2>Chefs ({chefs.length})</h2></div>
+      <ul className="outer-list">
         {chefs.map(cook => {
           return (
             <li key={cook.id}>
-              {cook.name}
-              <ul>
+              <Link to={`/updatechef/${cook.id}`}>{cook.name}</Link>
+              <button className="del-button" type="button" onClick={() => deleteChef(cook)}>Delete</button>
+              <ul className="inner-list">
                 {recipes.filter(dish => dish.chefId === cook.id).map(dish => {
                   return (
-                    <li key={dish.id}>
-                      <div className="dish-name">{dish.name}</div>
-                      <button type="button" onClick={() => deleteDish(dish)}>Delete</button>
+                    <li className="chef-inner-li" key={dish.id}>
+                      {dish.name}
+                      <button className="del-button" type="button" onClick={() => deleteDish(dish)}>Delete</button>
                     </li>
                   )
                 })}
               </ul>
-              <button type="button" onClick={() => deleteChef(cook)}>Delete</button>
             </li>
           )
         })}
       </ul>
-      <form onSubmit={ev => ev.preventDefault()}>
-        <input type="text" placeholder="Chef Name" value={chef} onChange={(ev) => setChef(ev.target.value)} />
-        <button type="submit" onClick={() => createChef(chef)}>Create</button>
-      </form>
+      <div className="form-container">
+        <form onSubmit={ev => ev.preventDefault()}>
+          <input type="text" placeholder="Chef Name" value={chef} onChange={(ev) => setChef(ev.target.value)} />
+          <button type="submit" onClick={() => createChef(chef)}>Create</button>
+        </form>
+      </div>
     </div>
   )
 }
