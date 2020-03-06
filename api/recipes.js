@@ -31,7 +31,7 @@ recipesRouter.get('/', async (req, res, next) => {
 
 recipesRouter.put('/', async (req, res, next) => {
   const { chefId, name, id } = req.body;
-  try { 
+  try {
     const data = await updateRecipes(chefId, name, id);
     res.status(200).send(data);
   } catch (error) {

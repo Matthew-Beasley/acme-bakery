@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import MainView from './MainView';
 import UpdateChef from './UpdateChef';
+import UpdateRecipe from './UpdateRecipe';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
       <Link to="/"><h1>Acme Bakery</h1></Link>
       <Route exact path="/" render={() => <MainView chefs={chefs} setChefs={setChefs} recipes={recipes} setRecipes={setRecipes} />} />
       <Route path="/updatechef/:id" render={props => <UpdateChef chefs={chefs} setChefs={setChefs} {...props} />} />
+      <Route path="/updaterecipe/:id" render={props => <UpdateRecipe recipes={recipes} setRecipes={setRecipes} chefs={chefs} setChefs={setChefs} {...props} />} />
     </div>
   )
 }

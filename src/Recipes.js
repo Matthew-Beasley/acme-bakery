@@ -28,10 +28,10 @@ const Recipes = ({ chefs, setRecipes, recipes }) => {
         {recipes.map(dish => {
           return (
             <li key={dish.id}>
-              <Link to={`/recipesUpdate/${dish.id}`}>{dish.name}</Link>
+              <Link to={`/updaterecipe/${dish.id}`}>{dish.name}</Link>
               <button className="del-button" type="button" onClick={() => deleteRecipe(dish)}>Delete</button>
               <ul className="inner-list">
-                {chefs.filter(cook => cook.id === dish.chefId).map(cook => {  
+                {chefs.filter(cook => cook.id === dish.chefId).map(cook => {
                   return (
                     <li key={cook.id}>
                      by {cook.name}

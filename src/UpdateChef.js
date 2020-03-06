@@ -20,18 +20,18 @@ const UpdateChef = (props) => {
 
   const updateChef = async () => {
     const response = await axios.put('/api/chefs', { name: chef, id });
-    chefs.map(cook => {
+    const mapped = chefs.map(cook => {
       if (cook.id === id) {
         cook.name = response.data.name;
       }
       return cook;
-    })
-    setChefs([...chefs]);
+    });
+    setChefs(mapped);
   }
 
   return (
-    <div>
-      <h1>Edit Chef</h1>
+    <div id="update-container">
+      <div className="update-header"><h1>Edit Chef</h1></div>
       <form onSubmit={ev => ev.preventDefault()}>
         <input type="text" value={chef} onChange={ev => setChef(ev.target.value)} />
         <button type="button" onClick={() => updateChef()}>Update</button>

@@ -106,3 +106,18 @@ form > select {
   margin: 1rem;
 }
 
+/*===== Update Components =====*/
+
+.update-header {
+  height: 3rem;
+  width: 100%;
+  background-color: teal;
+  color: white;
+}
+
+#update-container > form {
+  background-color: lightgray;
+  width: 100%;
+  height: auto;
+}
+
