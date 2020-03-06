@@ -20,6 +20,8 @@ const Chefs = ({ chefs, setChefs, recipes, setRecipes }) => {
 
   const deleteChef = async (cook) => {
     const response = await axios.delete(`/api/chefs/${cook.id}`);
+    const rows = await axios.get('/api/recipes');
+    setRecipes(rows.data);
     setChefs(chefs.filter(item => item.id !== response.data.id));
   }
 
@@ -50,7 +52,7 @@ const Chefs = ({ chefs, setChefs, recipes, setRecipes }) => {
       <div className="form-container">
         <form onSubmit={ev => ev.preventDefault()}>
           <input type="text" placeholder="Chef Name" value={chef} onChange={(ev) => setChef(ev.target.value)} />
-          <button type="submit" onClick={() => createChef(chef)}>Create</button>
+          <button type="submit" disabled={chef === ''} onClick={() => createChef(chef)}>Create</button>
         </form>
       </div>
     </div>

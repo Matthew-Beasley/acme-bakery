@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <div id="app-container">
-      <Link to="/"><h1>Acme Bakery</h1></Link>
+      <h1>Acme Bakery</h1>
       <Route exact path="/" render={() => <MainView chefs={chefs} setChefs={setChefs} recipes={recipes} setRecipes={setRecipes} />} />
       <Route path="/updatechef/:id" render={props => <UpdateChef chefs={chefs} setChefs={setChefs} {...props} />} />
       <Route path="/updaterecipe/:id" render={props => <UpdateRecipe recipes={recipes} setRecipes={setRecipes} chefs={chefs} setChefs={setChefs} {...props} />} />

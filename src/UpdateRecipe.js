@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -48,11 +49,12 @@ const UpdateRecipe = (props) => {
       return item;
     });
     setRecipes(mapped);
+    setRecipe('');
   }
-
 
     return (
       <div className="update-container">
+        <Link to="/"><h3>Home</h3></Link>
         <div className="update-header"><h1>Edit Recipe</h1></div>
         <form onSubmit={ev => ev.preventDefault()}>
           <input type="text" value={recipe} onChange={ev => setRecipe(ev.target.value)} />

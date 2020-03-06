@@ -10,6 +10,7 @@ const Recipes = ({ chefs, setRecipes, recipes }) => {
   const createRecipe = async () => {
     const response = await axios.post('/api/recipes', { name: recipe, chefId: chef });
     setRecipes([...recipes, response.data]);
+    setRecipe('')
   }
 
 
@@ -55,7 +56,7 @@ const Recipes = ({ chefs, setRecipes, recipes }) => {
               )
             })}
           </select>
-          <button type="button" onClick={() => createRecipe()}>Create</button>
+          <button type="submit" disabled={recipe === ''} onClick={() => createRecipe()}>Create</button>
         </form>
       </div>
     </div>
