@@ -56,7 +56,14 @@ const UpdateRecipe = (props) => {
         <div className="update-header"><h1>Edit Recipe</h1></div>
         <form onSubmit={ev => ev.preventDefault()}>
           <input type="text" value={recipe} onChange={ev => setRecipe(ev.target.value)} />
-          <input type="text" value={chef} onChange={ev => setChef(ev.target.value)} />
+          <select onChange={ev => setChef(ev.target.value)}>
+            <option key="default" value="">choose chef</option>
+            {chefs.map(cook => {
+              return (
+                <option key={cook.id} value={cook.name}>{cook.name}</option>
+              )
+            })}
+          </select>
           <button type="button" onClick={() => editRecipe()}>Update</button>
         </form>
 
