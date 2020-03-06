@@ -9,7 +9,7 @@ body {
   width: 100%;
 }
 
-#app-container > h1 {
+#app-container > a{
   color: teal;
   margin-left: 3rem;
 }
@@ -108,16 +108,23 @@ form > select {
 
 /*===== Update Components =====*/
 
+
 .update-header {
   height: 3rem;
   width: 100%;
+  margin-left: 5rem;
   background-color: teal;
   color: white;
 }
 
-#update-container > form {
+.update-header > h1 {
+  margin-left: 1rem;
+}
+
+.update-container > form {
   background-color: lightgray;
   width: 100%;
   height: auto;
+  margin-left: 5rem;
 }
 

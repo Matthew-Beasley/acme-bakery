@@ -30,7 +30,7 @@ const UpdateChef = (props) => {
   }
 
   return (
-    <div id="update-container">
+    <div className="update-container">
       <div className="update-header"><h1>Edit Chef</h1></div>
       <form onSubmit={ev => ev.preventDefault()}>
         <input type="text" value={chef} onChange={ev => setChef(ev.target.value)} />

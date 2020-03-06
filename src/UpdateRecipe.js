@@ -52,7 +52,7 @@ const UpdateRecipe = (props) => {
 
 
     return (
-      <div id="ubdate-container">
+      <div className="update-container">
         <div className="update-header"><h1>Edit Recipe</h1></div>
         <form onSubmit={ev => ev.preventDefault()}>
           <input type="text" value={recipe} onChange={ev => setRecipe(ev.target.value)} />
