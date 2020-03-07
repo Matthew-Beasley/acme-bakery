@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const UpdateRecipe = (props) => {
 
-  const { chefs, recipes, setRecipes } = props;
+  const { chefs, recipes, setRecipes, history } = props;
   const { id } = props.match.params;
 
   const [recipe, setRecipe] = useState('');
@@ -50,6 +50,7 @@ const UpdateRecipe = (props) => {
     });
     setRecipes(mapped);
     setRecipe('');
+    history.push('/');
   }
 
     return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import MainView from './MainView';
 import UpdateChef from './UpdateChef';
@@ -9,6 +9,7 @@ import UpdateRecipe from './UpdateRecipe';
 const App = () => {
   const [chefs, setChefs] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     Promise.all([
@@ -25,8 +26,8 @@ const App = () => {
     <div id="app-container">
       <h1>Acme Bakery</h1>
       <Route exact path="/" render={() => <MainView chefs={chefs} setChefs={setChefs} recipes={recipes} setRecipes={setRecipes} />} />
-      <Route path="/updatechef/:id" render={props => <UpdateChef chefs={chefs} setChefs={setChefs} {...props} />} />
-      <Route path="/updaterecipe/:id" render={props => <UpdateRecipe recipes={recipes} setRecipes={setRecipes} chefs={chefs} setChefs={setChefs} {...props} />} />
+      <Route path="/updatechef/:id" render={props => <UpdateChef history={history} chefs={chefs} setChefs={setChefs} {...props} />} />
+      <Route path="/updaterecipe/:id" render={props => <UpdateRecipe history={history} recipes={recipes} setRecipes={setRecipes} chefs={chefs} setChefs={setChefs} {...props} />} />
     </div>
   )
 }

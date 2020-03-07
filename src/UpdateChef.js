@@ -5,8 +5,7 @@ import axios from 'axios';
 
 const UpdateChef = (props) => {
   const { id } = props.match.params;
-  const { chefs, setChefs } = props;
-
+  const { chefs, setChefs, history} = props;
   const [chef, setChef] = useState('');
 
   useEffect(() => {
@@ -29,6 +28,7 @@ const UpdateChef = (props) => {
     });
     setChefs(mapped);
     setChef('');
+    history.push('/');
   }
 
   return (
