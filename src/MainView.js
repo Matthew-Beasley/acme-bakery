@@ -4,7 +4,7 @@ import Chefs from './Chefs';
 
 const MainView = ({ chefs, setChefs, recipes, setRecipes }) => {
   return (
-    <div id="mainview-constainer">
+    <div id="mainview-container">
       <Recipes chefs={chefs} setRecipes={setRecipes} recipes={recipes} />
       <Chefs chefs={chefs} setChefs={setChefs} recipes={recipes} setRecipes={setRecipes} />
     </div>
