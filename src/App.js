@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-first-prop-new-line */
+/* eslint-disable react/jsx-wrap-multilines */
 import React, { useEffect, useState } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -25,9 +27,17 @@ const App = () => {
   return (
     <div id="app-container">
       <h1>Acme Bakery</h1>
-      <Route exact path="/" render={() => <MainView chefs={chefs} setChefs={setChefs} recipes={recipes} setRecipes={setRecipes} />} />
-      <Route path="/updatechef/:id" render={props => <UpdateChef history={history} chefs={chefs} setChefs={setChefs} {...props} />} />
-      <Route path="/updaterecipe/:id" render={props => <UpdateRecipe history={history} recipes={recipes} setRecipes={setRecipes} chefs={chefs} setChefs={setChefs} {...props} />} />
+
+      <Route exact path="/" render={() => <MainView
+        chefs={chefs} setChefs={setChefs}
+        recipes={recipes} setRecipes={setRecipes} />} />
+
+      <Route path="/updatechef/:id" render={props => <UpdateChef
+        history={history} chefs={chefs} setChefs={setChefs} {...props} />} />
+
+      <Route path="/updaterecipe/:id" render={props => <UpdateRecipe
+        history={history} recipes={recipes} setRecipes={setRecipes}
+        chefs={chefs} setChefs={setChefs} {...props} />} />
     </div>
   )
 }

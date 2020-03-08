@@ -5,26 +5,37 @@ import axios from 'axios';
 const Recipes = ({ chefs, setRecipes, recipes }) => {
   const [recipe, setRecipe] = useState('');
   const [chef, setChef] = useState('');
-
+  const [error, setError] = useState('');
 
   const createRecipe = async () => {
-    const response = await axios.post('/api/recipes', { name: recipe, chefId: chef });
-    setRecipes([...recipes, response.data]);
-    setRecipe('')
+    try {
+      const response = await axios.post('/api/recipes', { name: recipe, chefId: chef });
+      setRecipes([...recipes, response.data]);
+      setRecipe('')
+      setError('');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   }
 
 
   const deleteRecipe = async (dish) => {
-    const response = await axios.delete(`/api/recipes/${dish.id}`);
-    setRecipes(
-      recipes.filter(item => item.id !== response.data.id)
-    );
+    try {
+      const response = await axios.delete(`/api/recipes/${dish.id}`);
+      setRecipes(
+        recipes.filter(item => item.id !== response.data.id)
+      );
+      setError('');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   }
 
 
   return (
     <div id="recipe-container">
       <div className="section-title"><h2>Recipes ({recipes.length})</h2></div>
+      {!!error && <div className="error">{error}</div>}
       <ul className="outer-list">
         {recipes.map(dish => {
           return (

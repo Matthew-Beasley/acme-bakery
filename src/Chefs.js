@@ -1,34 +1,52 @@
+/* eslint-disable no-catch-shadow */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Chefs = ({ chefs, setChefs, recipes, setRecipes }) => {
   const [chef, setChef] = useState('');
+  const [error, setError] = useState('');
 
   const createChef = async (name) => {
-    const cook = await axios.post('/api/chefs', { name });
-    setChefs([...chefs, cook.data]);
-    setChef('');
+    try {
+      const cook = await axios.post('/api/chefs', { name });
+      setChefs([...chefs, cook.data]);
+      setChef('');
+      setError('');
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
 
   const deleteDish = async (dish) => {
-    const response = await axios.delete(`/api/recipes/${dish.id}`);
-    setRecipes(recipes.filter(item => item.id !== response.data.id));
+    try {
+      const response = await axios.delete(`/api/recipes/${dish.id}`);
+      setRecipes(recipes.filter(item => item.id !== response.data.id));
+      setError('');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   }
 
 
   const deleteChef = async (cook) => {
-    const response = await axios.delete(`/api/chefs/${cook.id}`);
-    const rows = await axios.get('/api/recipes');
-    setRecipes(rows.data);
-    setChefs(chefs.filter(item => item.id !== response.data.id));
+    try {
+      const response = await axios.delete(`/api/chefs/${cook.id}`);
+      const rows = await axios.get('/api/recipes');
+      setRecipes(rows.data);
+      setChefs(chefs.filter(item => item.id !== response.data.id));
+      setError('');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   }
 
 
   return (
     <div id="chef-container">
       <div className="section-title"><h2>Chefs ({chefs.length})</h2></div>
+      {!!error && <div className="error">{error}</div>}
       <ul className="outer-list">
         {chefs.map(cook => {
           return (
